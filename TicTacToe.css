@@ -30,10 +30,8 @@ table {
 	background: black;
 	border-radius: 50%;
 	width: 5%;
-	height: 20%;
+	height: 11%;
 	position: absolute;
-	left: 40%;
-	top: 30%;
 }
 #check
 {
@@ -43,6 +41,4 @@ table {
 	font-size: 4em;
 	position: absolute;
 	display: none;
-	left: 40%;
-	top: 30%;
 }
