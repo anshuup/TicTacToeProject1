@@ -3,7 +3,7 @@ const express = require("express")
 const path = require('path')
 let app = express();
 const http = require('http').createServer(app);
-
+const port = process.env.PORT || 3000
 
 app.get("/",(req,res) => {
 	res.sendFile(path.join(__dirname, "/TicTacToe.html"))
@@ -17,6 +17,6 @@ app.get('/TicTacToe.js', function(req, res) {
 
 });
 
-http.listen(3000,() =>{
+http.listen(port,() =>{
 	console.log('Server running at http://127.0.0.1:3000/');
 });
