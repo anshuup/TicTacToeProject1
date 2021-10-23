@@ -1,3 +1,27 @@
+html{
+	height: 100%
+}
+#body{
+	background-color: white;
+	height: 100%
+}
 #header{
 	color:red;
+	text-align: center;
+}
+/* source : https://codepen.io/xunnn/pen/yEmMbm */
+td {
+  width: 100px;
+  height: 100px;
+}
+table {
+  margin: 5px auto;
+}
+.vert {
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+}
+.hori {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
 }
