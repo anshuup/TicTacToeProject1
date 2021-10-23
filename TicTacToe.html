@@ -11,21 +11,23 @@
   <body id="body" onload="alertWindow()">
 		<h1 id="header"> Tic Tac Toe </h1>
     <!-- source https://codepen.io/xunnn/pen/yEmMbm -->
+    <div id="check">X</div>
+
     <table>
       <tr>
-        <td></td>
-        <td class="vert"></td>
-        <td></td>
+        <td onclick="drawShape('1')" id="box1"></td>
+        <td onclick="drawShape('2')" class="vert" id="box2"></td>
+        <td onclick="drawShape('3')" id="box3"></td>
       </tr>
       <tr>
-        <td class="hori"></td>
-        <td class="vert hori"></td>
-        <td class="hori"></td>
+        <td onclick="drawShape('4')" class="hori" id="box4"></td>
+        <td onclick="drawShape('5')" class="vert hori" id="box5"></td>
+        <td onclick="drawShape('6')" class="hori" id="box6"></td>
       </tr>
       <tr>
-        <td></td>
-        <td class="vert"></td>
-        <td></td>
+        <td onclick="drawShape('7')" id="box7"></td>
+        <td onclick="drawShape('8')" class="vert" id="box8"></td>
+        <td onclick="drawShape('9')" id="box9"></td>
       </tr>
     </table>
   </body>
