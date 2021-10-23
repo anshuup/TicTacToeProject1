@@ -25,3 +25,24 @@ table {
   border-top: 2px solid black;
   border-bottom: 2px solid black;
 }
+#circle {
+	display: none;
+	background: black;
+	border-radius: 50%;
+	width: 5%;
+	height: 20%;
+	position: absolute;
+	left: 40%;
+	top: 30%;
+}
+#check
+{
+	border-radius: 2px;
+	font-family: Helvetica;
+	font-weight: bold;
+	font-size: 4em;
+	position: absolute;
+	display: none;
+	left: 40%;
+	top: 30%;
+}
