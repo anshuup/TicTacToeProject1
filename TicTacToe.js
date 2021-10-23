@@ -27,21 +27,45 @@ function drawShape(boxClicked){
 		let circleElem = document.createElement("div")
 		circleElem.id = "circle"
 		circlePlayer = false
-		let topStyle = rowNum * 30 + 30
-		let leftStyle = parseInt(boxClicked) + 40
+		let topStyle = rowNum * 16 + 16
+		let leftStyle
+		if(rowNum == 0){
+			leftStyle = (parseInt(boxClicked)-1)*7.5 + 40
+		}
+		if(rowNum == 1){
+			leftStyle = (parseInt(boxClicked)-4)*7.5 + 40
+			console.log(boxClicked)
+		}
+		if(rowNum == 2){
+			leftStyle = (parseInt(boxClicked)-7)*7.5 + 40
+		}
 		document.getElementById("body").appendChild(circleElem)
-		document.getElementById("circle").style.top = topStyle +"%"
-		document.getElementById("circle").style.left = leftStyle +"%"
-		document.getElementById("circle").style.display = "block"
+		circleElem.style.top = topStyle +"%"
+		circleElem.style.left = leftStyle +"%"
+		circleElem.style.display = "block"
 	}
 	else{
 		console.log("crossPlayer made move")
+		let checkElem = document.createElement("div")
+		checkElem.id = "check"
 		crossPlayer = false
 		circlePlayer = true
-		let topStyle = rowNum * 30 + 30
-		let leftStyle = parseInt(boxClicked) + 40
-		document.getElementById("check").style.top = topStyle +"%"
-		document.getElementById("check").style.left = leftStyle +"%"
-		document.getElementById("check").style.display = "flex"
+		let leftStyle
+		if(rowNum == 0){
+			leftStyle = (parseInt(boxClicked)-1)*7.5 + 41
+		}
+		if(rowNum == 1){
+			leftStyle = (parseInt(boxClicked)-4)*7.5 + 41
+			console.log(boxClicked)
+		}
+		if(rowNum == 2){
+			leftStyle = (parseInt(boxClicked)-7)*7.5 + 41
+		}
+		let topStyle = rowNum * 16 + 16
+		document.getElementById("body").appendChild(checkElem)
+		checkElem.style.top = topStyle +"%"
+		checkElem.style.left = leftStyle +"%"
+		checkElem.style.display = "block"
+		checkElem.innerHTML = "X"
 	}
 }
