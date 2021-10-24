@@ -8,7 +8,7 @@ function alertWindow(){
 	xhttp.send();
 }
 let circlePlayer = true;
-let circleMove = [[],[],[]]
+let circleMove = [[0,0,0],[0,0,0],[0,0,0]]
 let crossMove  = [[],[],[]]
 function drawShape(boxClicked){
 
@@ -45,6 +45,7 @@ function drawShape(boxClicked){
 		circleElem.style.left = leftStyle +"%"
 		circleElem.style.display = "block"
 		circleElem.innerHTML ="O"
+		document.getElementById("box"+boxClicked).onclick = false
 
 	}
 	else{
@@ -71,14 +72,14 @@ function drawShape(boxClicked){
 		checkElem.style.left = leftStyle +"%"
 		checkElem.style.display = "block"
 		checkElem.innerHTML = "X"
+		document.getElementById("box"+boxClicked).onclick = false
 	}
 }
 const arrayColumn = (arr, n) => arr.map(x => x[n]);
 
+let winner;
 
-function findWinner(){
-
-	let winner;
+function findWinner(boxClicked){
 	/* source https://stackoverflow.com/questions/16571035/javascript-tictactoe-if-winner-detection */
 	for(var i = 0; i<3;i++){
 		var rowSum = 0;
@@ -86,6 +87,15 @@ function findWinner(){
 			rowSum += circleMove[i][j];
 		}
 		if(rowSum === 3){
+			/*console.log("move num "+i)
+			for(var j=0;j<3;j++){
+				for(var k=0;k<3;k++){
+					if(i != j){
+						console.log("i "+i +" j "+j)
+						document.getElementById("box"+boxClicked).style.color = "grey"
+					}
+				}
+			}*/
 			winner = "circle"
 		}
 		else if(rowSum === -3){
@@ -98,6 +108,7 @@ function findWinner(){
 			colSum += circleMove[j][i];
 		}
 		if(colSum === 3){
+			console.log("move num "+i)
 			winner = "circle"
 		}
 		else if(colSum === -3){
@@ -119,7 +130,8 @@ function findWinner(){
 	if(winner != undefined){
 		window.alert(winner + "won")
 	}
-	if(circleMove[0].length == 3 && circleMove[1].length == 3 && circleMove[2].length == 3 && winner == undefined){
+
+	if(!circleMove[0].includes(0) && !circleMove[1].includes(0)  && !circleMove[2].includes(0) && winner == undefined){
 		window.alert("game over")
 	}
 }
