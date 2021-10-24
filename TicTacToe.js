@@ -40,33 +40,33 @@ function drawShape(boxClicked){
 			leftStyle = (parseInt(boxClicked)-6)*7.5 + 40
 			circleMove[rowNum][parseInt(boxClicked)-6] = 1
 		}
-		document.getElementById("body").appendChild(circleElem)
+		document.getElementById("box"+boxClicked).appendChild(circleElem)
 		circleElem.style.top = topStyle +"%"
 		circleElem.style.left = leftStyle +"%"
 		circleElem.style.display = "block"
+		circleElem.innerHTML ="O"
 
 	}
 	else{
-		console.log("crossPlayer made move")
 		let checkElem = document.createElement("div")
 		checkElem.id = "check"
 		crossPlayer = false
 		circlePlayer = true
 		let leftStyle
 		if(rowNum == 0){
-			leftStyle = (parseInt(boxClicked)-0)*7.5 + 41
+			leftStyle = (parseInt(boxClicked)-0)*8 + 40
 			circleMove[rowNum][parseInt(boxClicked)] = -1
 		}
 		if(rowNum == 1){
-			leftStyle = (parseInt(boxClicked)-3)*7.5 + 41
+			leftStyle = (parseInt(boxClicked)-3)*8 + 40
 			circleMove[rowNum][parseInt(boxClicked)-3] = -1
 		}
 		if(rowNum == 2){
-			leftStyle = (parseInt(boxClicked)-6)*7.5 + 41
+			leftStyle = (parseInt(boxClicked)-6)*8 + 40
 			circleMove[rowNum][parseInt(boxClicked)-6] = -1
 		}
 		let topStyle = rowNum * 16 + 16
-		document.getElementById("body").appendChild(checkElem)
+		document.getElementById("box"+boxClicked).appendChild(checkElem)
 		checkElem.style.top = topStyle +"%"
 		checkElem.style.left = leftStyle +"%"
 		checkElem.style.display = "block"
@@ -76,12 +76,9 @@ function drawShape(boxClicked){
 const arrayColumn = (arr, n) => arr.map(x => x[n]);
 
 
-function findWinner(boxClicked){
+function findWinner(){
 
 	let winner;
-	let rowWinnerMove = [[0,1,2],[3,4,5],[6,7,8]]
-	let columnWinnerMove = [[0,3,6],[1,4,7],[2,5,8]]
-
 	/* source https://stackoverflow.com/questions/16571035/javascript-tictactoe-if-winner-detection */
 	for(var i = 0; i<3;i++){
 		var rowSum = 0;
@@ -89,10 +86,10 @@ function findWinner(boxClicked){
 			rowSum += circleMove[i][j];
 		}
 		if(rowSum === 3){
-			window.alert("Circle WIN!");
+			winner = "circle"
 		}
 		else if(rowSum === -3){
-			window.alert("Cross WIN!");
+			winner = "cross"
 		}
 	}
 	for(var i = 0; i<3;i++){
@@ -101,22 +98,28 @@ function findWinner(boxClicked){
 			colSum += circleMove[j][i];
 		}
 		if(colSum === 3){
-			window.alert("Circle WIN!");
+			winner = "circle"
 		}
 		else if(colSum === -3){
-			window.alert("Cross WIN!");
+			winner = "cross"
 		}
 	}
 	if(circleMove[0][0] + circleMove[1][1] + circleMove[2][2] === 3){
-		alert("Circle WIN!");
+		winner = "circle"
 	}
 	else if(circleMove[0][0] + circleMove[1][1] + circleMove[2][2] === -3){
-		alert("Cross WIN!");
+		winner = "cross"
 	}
 	if(circleMove[2][0] + circleMove[1][1] + circleMove[0][2] === 3){
-		alert("Circle WIN!");
+		winner = "circle"
 	}
 	else if(circleMove[2][0] + circleMove[1][1] + circleMove[0][2] === -3){
-		alert("Cross WIN!");
+		winner = "cross"
+	}
+	if(winner != undefined){
+		window.alert(winner + "won")
+	}
+	if(circleMove[0].length == 3 && circleMove[1].length == 3 && circleMove[2].length == 3 && winner == undefined){
+		window.alert("game over")
 	}
 }
