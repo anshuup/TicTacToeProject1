@@ -11,11 +11,13 @@ html{
 }
 /* source : https://codepen.io/xunnn/pen/yEmMbm */
 td {
-  width: 100px;
-  height: 100px;
+  width: 15%;
+  height: 15%;
 }
 table {
   margin: 5px auto;
+	width: 25%;
+	height: 55%;
 }
 .vert {
   border-left: 2px solid black;
@@ -26,19 +28,23 @@ table {
   border-bottom: 2px solid black;
 }
 #circle {
-	display: none;
-	background: black;
-	border-radius: 50%;
-	width: 5%;
-	height: 11%;
+	top: 14%;
+	left: 40%;
+	font-size: 6vw;
+	border-radius: 2px;
 	position: absolute;
+	font-family: Helvetica;
+	font-weight: bold;
+	width: fit-content;
 }
 #check
 {
+	top: 16%;
+	left: 41%;
+	font-size: 6vw;
 	border-radius: 2px;
+	position: absolute;
 	font-family: Helvetica;
 	font-weight: bold;
-	font-size: 4em;
-	position: absolute;
-	display: none;
+	width: fit-content;
 }
