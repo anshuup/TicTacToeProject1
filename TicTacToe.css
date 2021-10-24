@@ -2,17 +2,19 @@ html{
 	height: 100%
 }
 #body{
-	background-color: white;
-	height: 100%
+	background-color: black;
+	height: 100%;
 }
 #header{
-	color:red;
+	color:white;
 	text-align: center;
+	font-family: Marker Felt, fantasy;
 }
 /* source : https://codepen.io/xunnn/pen/yEmMbm */
 td {
   width: 15%;
   height: 15%;
+	color: white;
 }
 table {
   margin: 5px auto;
@@ -20,12 +22,14 @@ table {
 	height: 55%;
 }
 .vert {
-  border-left: 2px solid black;
-  border-right: 2px solid black;
+  border-left: 2px solid white;
+  border-right: 2px solid white;
+	color: white;
 }
 .hori {
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+	color: white;
 }
 #circle {
 	top: 14%;
