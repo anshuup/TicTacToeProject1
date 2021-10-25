@@ -10,6 +10,11 @@ html{
 	text-align: center;
 	font-family: Marker Felt, fantasy;
 }
+#winnerVal{
+	color: white;
+	text-align: center;
+	font-family: sans-serif;
+}
 /* source : https://codepen.io/xunnn/pen/yEmMbm */
 td {
   width: 15%;
@@ -32,7 +37,6 @@ table {
 	color: white;
 }
 #circle {
-	top: 14%;
 	left: 40%;
 	font-size: 6vw;
 	border-radius: 2px;
@@ -43,8 +47,6 @@ table {
 }
 #check
 {
-	top: 16%;
-	left: 41%;
 	font-size: 6vw;
 	border-radius: 2px;
 	position: absolute;
