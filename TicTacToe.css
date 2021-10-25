@@ -3,7 +3,6 @@ html{
 }
 #body{
 	background-color: black;
-	height: 100%;
 }
 #header{
 	color:white;
@@ -20,11 +19,15 @@ td {
   width: 15%;
   height: 15%;
 	color: white;
+	vertical-align: top;
+  font-size: 5em;
+  padding-left: 15px;
+
 }
 table {
   margin: 5px auto;
-	width: 25%;
-	height: 55%;
+	width: 300px;
+	height: 300px;
 }
 .vert {
   border-left: 2px solid white;
@@ -37,8 +40,6 @@ table {
 	color: white;
 }
 #circle {
-	left: 40%;
-	font-size: 6vw;
 	border-radius: 2px;
 	position: absolute;
 	font-family: Helvetica;
@@ -47,7 +48,6 @@ table {
 }
 #check
 {
-	font-size: 6vw;
 	border-radius: 2px;
 	position: absolute;
 	font-family: Helvetica;
@@ -66,9 +66,9 @@ table {
 	background-color: black;
 	color: white;
 	border: 2px solid white;
-	position: absolute;
-	left: 46%;
-	top:80%;
+	position: fixed;
+	left: 46.5%;
+	top:70%;
 }
 #restart:hover{
 	color:grey;

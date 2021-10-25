@@ -42,8 +42,8 @@ function drawShape(boxClicked,boxId){
 			circleMove[rowNum][parseInt(boxClicked)-6] = 1
 		}
 		document.getElementById("box"+boxId).appendChild(circleElem)
-		circleElem.style.top = topStyle +"%"
-		circleElem.style.left = leftStyle +"%"
+		//circleElem.style.top = topStyle +"%"
+		//circleElem.style.left = leftStyle +"%"
 		circleElem.style.display = "block"
 		circleElem.innerHTML ="O"
 		document.getElementById("box"+boxId).onclick = false
@@ -70,8 +70,8 @@ function drawShape(boxClicked,boxId){
 		}
 		let topStyle = rowNum * 20 + 20
 		document.getElementById("box"+boxId).appendChild(checkElem)
-		checkElem.style.top = topStyle +"%"
-		checkElem.style.left = leftStyle +"%"
+	//	checkElem.style.top = topStyle +"%"
+	//	checkElem.style.left = leftStyle +"%"
 		checkElem.style.display = "block"
 		checkElem.innerHTML = "X"
 		document.getElementById("box"+boxId).onclick = false
