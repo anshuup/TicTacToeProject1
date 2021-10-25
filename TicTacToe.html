@@ -11,22 +11,22 @@
   <body id="body" onload="alertWindow()">
 		<h1 id="header"> Tic Tac Toe </h1>
     <!-- source https://codepen.io/xunnn/pen/yEmMbm -->
-
+    <h2 id="winnerVal"> Circle is making move... </h2>
     <table>
       <tr>
-        <td onclick="drawShape('0');findWinner('0')" id="box0"></td>
-        <td onclick="drawShape('1');findWinner('1')" class="vert" id="box1"></td>
-        <td onclick="drawShape('2');findWinner('2')" id="box2"></td>
+        <td onclick="drawShape('0','00');findWinner('00')" id="box00"></td>
+        <td onclick="drawShape('1','01');findWinner('01')" class="vert" id="box01"></td>
+        <td onclick="drawShape('2','02');findWinner('02')" id="box02"></td>
       </tr>
       <tr>
-        <td onclick="drawShape('3');findWinner('3')" class="hori" id="box3"></td>
-        <td onclick="drawShape('4');findWinner('4')" class="vert hori" id="box4"></td>
-        <td onclick="drawShape('5');findWinner('5')" class="hori" id="box5"></td>
+        <td onclick="drawShape('3','10');findWinner('10')" class="hori" id="box10"></td>
+        <td onclick="drawShape('4','11');findWinner('11')" class="vert hori" id="box11"></td>
+        <td onclick="drawShape('5','12');findWinner('12')" class="hori" id="box12"></td>
       </tr>
       <tr>
-        <td onclick="drawShape('6');findWinner('6')" id="box6"></td>
-        <td onclick="drawShape('7');findWinner('7')" class="vert" id="box7"></td>
-        <td onclick="drawShape('8');findWinner('8')" id="box8"></td>
+        <td onclick="drawShape('6','20');findWinner('20')" id="box20"></td>
+        <td onclick="drawShape('7','21');findWinner('21')" class="vert" id="box21"></td>
+        <td onclick="drawShape('8','22');findWinner('22')" id="box22"></td>
       </tr>
     </table>
   </body>
