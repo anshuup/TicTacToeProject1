@@ -45,6 +45,7 @@ function drawShape(boxClicked,boxId){
 			circleMove[rowNum][parseInt(boxClicked)-6] = 1
 		}
 		document.getElementById("box"+boxId).appendChild(circleElem)
+		circleElem.classList.toggle('fade');
 
 		circleElem.style.display = "block"
 		circleElem.innerHTML ="O"
@@ -187,6 +188,9 @@ function findWinner(boxId){
 				for(var k=0;k<3;k++){
 					if(i != j){
 						document.getElementById("box"+j+k).style.color = "grey"
+					}
+					else{
+						document.getElementById("box"+j+k).style.color = "red"
 					}
 				}
 			}
