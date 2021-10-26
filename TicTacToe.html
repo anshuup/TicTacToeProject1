@@ -11,6 +11,7 @@
   <body id="body" onload="alertWindow()">
 		<h1 id="header"> Tic Tac Toe </h1>
     <!-- source https://codepen.io/xunnn/pen/yEmMbm -->
+    <h2 id="compText"> Playing against computer... </h2>
     <h2 id="winnerVal"> Circle is making move... </h2>
     <table>
       <tr>
@@ -29,10 +30,13 @@
         <td onclick="drawShape('8','22');findWinner('22')" id="box22"></td>
       </tr>
     </table>
-    <!--
-    <div id="buttonText">
-      <button id="restart" onclick=window.location.reload()> Restart </button>
+
+
+    <div id="info">
+      <a href = "#" onclick="window.location.reload(true);" id="restartLink">Restart</a>
+      <a href = "/twoPlayer" id="twoPlayer">Two Player</a>
+      <a href = "/" id="computer" style="color:white;">Computer</a>
     </div>
-  -->
+
   </body>
 </html>

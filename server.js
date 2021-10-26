@@ -16,7 +16,9 @@ app.get('/TicTacToe.css', function(req, res) {
 app.get('/TicTacToe.js', function(req, res) {
 	res.sendFile(path.join(__dirname, "/TicTacToe.js"))
 });
-
+app.get('/twoPlayer', function(req, res) {
+	res.sendFile(path.join(__dirname, "/TicTacToeTwoPlayer.html"))
+});
 http.listen(port,() =>{
 	console.log('Server running at http://127.0.0.1:3000/');
 });
