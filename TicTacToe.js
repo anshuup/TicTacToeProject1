@@ -8,10 +8,11 @@ function alertWindow(){
 	xhttp.send();
 }
 let winner;
+let circleWinner = 0;
+let crossWinner = 0;
 
 let circlePlayer = true;
 let circleMove = [[0,0,0],[0,0,0],[0,0,0]]
-let crossMove  = [[],[],[]]
 function drawShape(boxClicked,boxId){
 
 	let rowNum = 0
@@ -30,78 +31,85 @@ function drawShape(boxClicked,boxId){
 		let circleElem = document.createElement("div")
 		circleElem.id = "circle"
 		circlePlayer = false
-		let topStyle = rowNum * 20 + 20
-		let leftStyle
 		if(rowNum == 0){
-			leftStyle = (parseInt(boxClicked))*7.5 + 40
 			circleMove[rowNum][parseInt(boxClicked)] = 1
 		}
 		if(rowNum == 1){
-			leftStyle = (parseInt(boxClicked)-3)*7.5 + 40
 			circleMove[rowNum][parseInt(boxClicked)-3] = 1
 		}
 		if(rowNum == 2){
-			leftStyle = (parseInt(boxClicked)-6)*7.5 + 40
 			circleMove[rowNum][parseInt(boxClicked)-6] = 1
 		}
 		document.getElementById("box"+boxId).appendChild(circleElem)
-		circleElem.classList.toggle('fade');
 
 		circleElem.style.display = "block"
 		circleElem.innerHTML ="O"
 		document.getElementById("box"+boxId).onclick = false
-
+		circleElem.classList.add("elementToFadeInAndOut");
+	  setTimeout(function(){circleElem.classList.remove("elementToFadeInAndOut");}, 500);
 	}
-	setTimeout(function(){
-		console.log("winner "+winner)
-		if(winner == undefined){
-			let emptyValI = []
-			let emptyValJ = []
 
-			console.log(circleMove)
-			console.log(emptyValI)
-			console.log(emptyValJ)
-			for(var i=0;i<circleMove.length;i++){
-				for(var j=0;j<circleMove[i].length;j++){
-					if(circleMove[i][j] == 0){
-						emptyValI.push(i)
-						emptyValJ.push(j)
+	if(document.getElementById("box"+boxId).innerText.length != 0){
+		setTimeout(function(){
+			console.log("winner "+winner)
+			console.log("circle score "+circleWinner)
+			console.log("cross score "+crossWinner)
+			if(winner == undefined){
+				let emptyValI = []
+				let emptyValJ = []
+
+				for(var i=0;i<circleMove.length;i++){
+					for(var j=0;j<circleMove[i].length;j++){
+						if(circleMove[i][j] == 0){
+							emptyValI.push(i)
+							emptyValJ.push(j)
+						}
 					}
 				}
-			}
-			let index = Math.floor(Math.random() * emptyValI.length);
-			let val = emptyValI[index]
-			let val2 = emptyValJ[index]
+				let index = Math.floor(Math.random() * emptyValI.length);
+				let val = emptyValI[index]
+				let val2 = emptyValJ[index]
 
-			document.getElementById("winnerVal").innerHTML = "Circle is making move..."
-			let checkElem = document.createElement("div")
-			checkElem.id = "check"
-			crossPlayer = false
-			circlePlayer = true
-			let leftStyle
-			if(rowNum == 0){
-				leftStyle = (parseInt(boxClicked)-0)*8 + 40
-				circleMove[val][val2] = -1
+				document.getElementById("winnerVal").innerHTML = "Circle is making move..."
+				let checkElem = document.createElement("div")
+				checkElem.id = "check"
+				crossPlayer = false
+				circlePlayer = true
+				let leftStyle
+				if(rowNum == 0){
+					leftStyle = (parseInt(boxClicked)-0)*8 + 40
+					circleMove[val][val2] = -1
+				}
+				if(rowNum == 1){
+					leftStyle = (parseInt(boxClicked)-3)*8 + 40
+					circleMove[val][val2] = -1
+				}
+				if(rowNum == 2){
+					leftStyle = (parseInt(boxClicked)-6)*8 + 40
+					circleMove[val][val2] = -1
+				}
+				let topStyle = rowNum * 20 + 20
+				document.getElementById("box"+val+val2).appendChild(checkElem)
+				document.getElementById("box"+val+val2).style.color = "antiquewhite"
+				checkElem.style.display = "block"
+				checkElem.innerHTML = "X"
+				document.getElementById("box"+val+val2).onclick = false
+				findWinner("'"+val+val2+"'")
+				checkElem.classList.add("elementToFadeInAndOut");
+				setTimeout(function(){checkElem.classList.remove("elementToFadeInAndOut");}, 500);
 			}
-			if(rowNum == 1){
-				leftStyle = (parseInt(boxClicked)-3)*8 + 40
-				circleMove[val][val2] = -1
+			else{
+				/*document.body.addEventListener("click", function (evt) {
+		    	for(var i=0;i<3;i++){
+						for(var j=0;j<3;j++){
+							document.getElementById("box"+i+j).innerHTML = ""
+							document.getElementById("box"+i+j).onclick = true
+						}
+					}
+				});*/
 			}
-			if(rowNum == 2){
-				leftStyle = (parseInt(boxClicked)-6)*8 + 40
-				circleMove[val][val2] = -1
-			}
-			let topStyle = rowNum * 20 + 20
-			document.getElementById("box"+val+val2).appendChild(checkElem)
-			document.getElementById("box"+val+val2).style.color = "antiquewhite"
-			checkElem.style.display = "block"
-			checkElem.innerHTML = "X"
-			document.getElementById("box"+val+val2).onclick = false
-			findWinner("'"+val+val2+"'")
-		}
-	}, 1000);
-
-
+		}, 300);
+	}
 }
 function twoPlay(boxClicked,boxId){
 
@@ -121,23 +129,16 @@ function twoPlay(boxClicked,boxId){
 		let circleElem = document.createElement("div")
 		circleElem.id = "circle"
 		circlePlayer = false
-		let topStyle = rowNum * 20 + 20
-		let leftStyle
 		if(rowNum == 0){
-			leftStyle = (parseInt(boxClicked))*7.5 + 40
 			circleMove[rowNum][parseInt(boxClicked)] = 1
 		}
 		if(rowNum == 1){
-			leftStyle = (parseInt(boxClicked)-3)*7.5 + 40
 			circleMove[rowNum][parseInt(boxClicked)-3] = 1
 		}
 		if(rowNum == 2){
-			leftStyle = (parseInt(boxClicked)-6)*7.5 + 40
 			circleMove[rowNum][parseInt(boxClicked)-6] = 1
 		}
 		document.getElementById("box"+boxId).appendChild(circleElem)
-		//circleElem.style.top = topStyle +"%"
-		//circleElem.style.left = leftStyle +"%"
 		circleElem.style.display = "block"
 		circleElem.innerHTML ="O"
 		document.getElementById("box"+boxId).onclick = false
@@ -149,25 +150,17 @@ function twoPlay(boxClicked,boxId){
 		checkElem.id = "check"
 		crossPlayer = false
 		circlePlayer = true
-		let leftStyle
 		if(rowNum == 0){
-			leftStyle = (parseInt(boxClicked)-0)*8 + 40
 			circleMove[rowNum][parseInt(boxClicked)] = -1
 		}
 		if(rowNum == 1){
-			leftStyle = (parseInt(boxClicked)-3)*8 + 40
 			circleMove[rowNum][parseInt(boxClicked)-3] = -1
 		}
 		if(rowNum == 2){
-			leftStyle = (parseInt(boxClicked)-6)*8 + 40
 			circleMove[rowNum][parseInt(boxClicked)-6] = -1
 		}
-		let topStyle = rowNum * 20 + 20
 		document.getElementById("box"+boxId).appendChild(checkElem)
 		document.getElementById("box"+boxId).style.color = "antiquewhite"
-
-	//	checkElem.style.top = topStyle +"%"
-	//	checkElem.style.left = leftStyle +"%"
 		checkElem.style.display = "block"
 		checkElem.innerHTML = "X"
 		document.getElementById("box"+boxId).onclick = false
@@ -190,11 +183,12 @@ function findWinner(boxId){
 						document.getElementById("box"+j+k).style.color = "grey"
 					}
 					else{
-						document.getElementById("box"+j+k).style.color = "red"
+					// 	document.getElementById("box"+j+k).style.color = "red"
 					}
 				}
 			}
 			winner = "Circle"
+			circleWinner+=1
 		}
 		else if(rowSum === -3){
 			for(var j=0;j<3;j++){
@@ -205,6 +199,7 @@ function findWinner(boxId){
 				}
 			}
 			winner = "Cross"
+			crossWinner+=1
 		}
 	}
 	for(var i = 0; i<3;i++){
@@ -221,6 +216,7 @@ function findWinner(boxId){
 				}
 			}
 			winner = "Circle"
+			circleWinner+=1
 		}
 		else if(colSum === -3){
 			for(var j=0;j<3;j++){
@@ -231,6 +227,7 @@ function findWinner(boxId){
 				}
 			}
 			winner = "Cross"
+			crossWinner+=1
 		}
 	}
 	if(circleMove[0][0] + circleMove[1][1] + circleMove[2][2] === 3){
@@ -242,6 +239,7 @@ function findWinner(boxId){
 			}
 		}
 		winner = "Circle"
+		circleWinner+=1
 	}
 	else if(circleMove[0][0] + circleMove[1][1] + circleMove[2][2] === -3){
 		for(var j=0;j<3;j++){
@@ -252,6 +250,7 @@ function findWinner(boxId){
 			}
 		}
 		winner = "Cross"
+		crossWinner+=1
 	}
 	if(circleMove[2][0] + circleMove[1][1] + circleMove[0][2] === 3){
 		for(var j=0;j<3;j++){
@@ -263,6 +262,7 @@ function findWinner(boxId){
 		document.getElementById("box11").style.color = "white"
 		document.getElementById("box02").style.color = "white"
 		winner = "Circle"
+		circleWinner+=1
 	}
 	else if(circleMove[2][0] + circleMove[1][1] + circleMove[0][2] === -3){
 		for(var j=0;j<3;j++){
@@ -274,6 +274,7 @@ function findWinner(boxId){
 		document.getElementById("box11").style.color = "white"
 		document.getElementById("box02").style.color = "white"
 		winner = "Cross"
+		crossWinner+=1
 	}
 	if(winner != undefined){
 		for(var i=0;i<3;i++){

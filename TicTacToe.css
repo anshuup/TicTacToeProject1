@@ -73,3 +73,12 @@ table {
 	font-family: sans-serif;
 	text-align: center;
 }
+
+.elementToFadeInAndOut {
+  animation: fadeInOut 0.5s linear forwards;
+}
+
+@keyframes fadeInOut {
+ 0% { opacity:0; }
+ 50% { opacity:1; }
+}
