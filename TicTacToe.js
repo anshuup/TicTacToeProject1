@@ -383,6 +383,6 @@ function play() {
 	console.log("time "+audio.currentTime)
 
 	audio.play();
-	audio.currentTime = 0
+	//audio.currentTime = 0
 
 }
