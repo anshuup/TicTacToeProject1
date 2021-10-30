@@ -381,9 +381,8 @@ function findBestPossibleMove(){
 function play() {
 	var audio = document.getElementById("audio");
 	audio.src = "/sound"
-//	console.log("time "+audio.currentTime)
 
 	audio.play();
-	//audio.currentTime = 0
+	audio.currentTime = 0
 
 }
