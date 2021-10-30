@@ -380,7 +380,7 @@ function findBestPossibleMove(){
 
 function play() {
 	var audio = document.getElementById("audio");
-	console.log("time "+audio.currentTime)
+//	console.log("time "+audio.currentTime)
 
 	audio.play();
 	//audio.currentTime = 0
