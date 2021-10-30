@@ -51,7 +51,6 @@ function drawShape(boxClicked,boxId){
 	  setTimeout(function(){circleElem.classList.remove("elementToFadeInAndOut");}, 500);
 	}
 
-
 	if(document.getElementById("box"+boxId).innerText.length != 0){
 		setTimeout(function(){
 			if(winner == undefined && document.getElementById("winnerVal").innerHTML != "Game over"){
@@ -294,6 +293,7 @@ function findWinner(boxId){
 		for(var i=0;i<3;i++){
 			for(var j=0;j<3;j++){
 				document.getElementById("box"+i+j).onclick = false
+				document.getElementById("box"+i+j).style.color = "grey"
 			}
 		}
 	}
