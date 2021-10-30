@@ -15,6 +15,7 @@ let circlePlayer = true;
 let circleMove = [[0,0,0],[0,0,0],[0,0,0]]
 function drawShape(boxClicked,boxId){
 
+
 	let rowNum = 0
 	if(parseInt(boxClicked) <= 2){
 		rowNum = 0
@@ -27,6 +28,7 @@ function drawShape(boxClicked,boxId){
 	}
 
 	if(circlePlayer == true){
+		play()
 		document.getElementById("winnerVal").innerHTML = "Cross is making move..."
 		let circleElem = document.createElement("div")
 		circleElem.id = "circle"
@@ -100,6 +102,7 @@ function drawShape(boxClicked,boxId){
 				document.getElementById("box"+val+val2).style.color = "antiquewhite"
 				checkElem.style.display = "block"
 				checkElem.innerHTML = "X"
+				play()
 				document.getElementById("box"+val+val2).onclick = false
 				findWinner("'"+val+val2+"'")
 				checkElem.classList.add("elementToFadeInAndOut");
@@ -107,7 +110,7 @@ function drawShape(boxClicked,boxId){
 			}
 			else{
 			}
-		}, 2000);
+		}, 500);
 	}
 }
 function twoPlay(boxClicked,boxId){
@@ -122,7 +125,7 @@ function twoPlay(boxClicked,boxId){
 	else if(parseInt(boxClicked) > 5 && parseInt(boxClicked) <= 8){
 		rowNum = 2
 	}
-
+	play()
 	if(circlePlayer == true){
 		document.getElementById("winnerVal").innerHTML = "Cross is making move..."
 		let circleElem = document.createElement("div")
@@ -296,7 +299,6 @@ function findWinner(boxId){
 	}
 }
 
-
 function findBestPossibleMove(){
 	let bestMoveArrayRow = []
 	let bestMoveArrayColumn= []
@@ -374,4 +376,13 @@ function findBestPossibleMove(){
 	return array
 
 	//find the one where computer wins i.e sum = -2
+}
+
+function play() {
+	var audio = document.getElementById("audio");
+	console.log("time "+audio.currentTime)
+
+	audio.play();
+	audio.currentTime = 0
+
 }

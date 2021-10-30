@@ -10,6 +10,14 @@ app.get("/",(req,res) => {
 	res.sendFile(path.join(__dirname, "/TicTacToe.html"))
 	console.log(__dirname)
 })
+app.get("/sound",(req,res)=>{
+	res.sendFile(path.join(__dirname, "/sfx-pop5.mp3"))
+	console.log(__dirname)
+})
+app.get("/twoPlayer/sound",(req,res)=>{
+	res.sendFile(path.join(__dirname, "/sfx-pop5.mp3"))
+	console.log(__dirname)
+})
 app.get('/TicTacToe.css', function(req, res) {
 	res.sendFile(path.join(__dirname, "/TicTacToe.css"))
 });
