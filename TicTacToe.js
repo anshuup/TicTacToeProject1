@@ -52,7 +52,7 @@ function drawShape(boxClicked,boxId){
 
 	if(document.getElementById("box"+boxId).innerText.length != 0){
 		setTimeout(function(){
-			if(winner == undefined){
+			if(winner == undefined && document.getElementById("winnerVal").innerHTML != "Game over"){
 				let bestMoveArray = []
 
 				bestMoveArray = findBestPossibleMove()
@@ -82,23 +82,18 @@ function drawShape(boxClicked,boxId){
 					val2 = emptyValJ[index]
 				}
 
-
 				document.getElementById("winnerVal").innerHTML = "Circle is making move..."
 				let checkElem = document.createElement("div")
 				checkElem.id = "check"
 				crossPlayer = false
 				circlePlayer = true
-				let leftStyle
 				if(rowNum == 0){
-					leftStyle = (parseInt(boxClicked)-0)*8 + 40
 					circleMove[val][val2] = -1
 				}
 				if(rowNum == 1){
-					leftStyle = (parseInt(boxClicked)-3)*8 + 40
 					circleMove[val][val2] = -1
 				}
 				if(rowNum == 2){
-					leftStyle = (parseInt(boxClicked)-6)*8 + 40
 					circleMove[val][val2] = -1
 				}
 				document.getElementById("box"+val+val2).appendChild(checkElem)
@@ -111,14 +106,6 @@ function drawShape(boxClicked,boxId){
 				setTimeout(function(){checkElem.classList.remove("elementToFadeInAndOut");}, 5000);
 			}
 			else{
-				/*document.body.addEventListener("click", function (evt) {
-		    	for(var i=0;i<3;i++){
-						for(var j=0;j<3;j++){
-							document.getElementById("box"+i+j).innerHTML = ""
-							document.getElementById("box"+i+j).onclick = true
-						}
-					}
-				});*/
 			}
 		}, 2000);
 	}
@@ -314,7 +301,6 @@ function findBestPossibleMove(){
 	let bestMoveArrayRow = []
 	let bestMoveArrayColumn= []
 
-	console.log(circleMove)
 	a = circleMove.map((y) => y.reduce((a, b) => a + b));
 	b = circleMove.reduce((a, b) => a.map((v, i) => v + b[i]));
 
@@ -362,7 +348,7 @@ function findBestPossibleMove(){
 	for (let row = 0; row < circleMove.length; row++) {
 		diagonal2 += circleMove[row][circleMove.length - row - 1];
 
-		if(diagonal2 == 2 && circleMove[row][circleMove.length - row - 1] == 0){
+		if(diagonal2 == 2){
 			for(i=0;i<circleMove.length;i++){
 				if(circleMove[i][circleMove.length - i - 1] == 0){
 					diagnoalRow2 = i;
@@ -379,11 +365,12 @@ function findBestPossibleMove(){
 		bestMoveArrayRow.push(diagnoalRow2)
 		bestMoveArrayColumn.push(diagnoalCol2)
 	}
+
+
 	let array = []
 	array.push(bestMoveArrayRow)
 	array.push(bestMoveArrayColumn)
-	console.log(bestMoveArrayRow)
-	console.log(bestMoveArrayColumn)
+
 	return array
 
 	//find the one where computer wins i.e sum = -2
