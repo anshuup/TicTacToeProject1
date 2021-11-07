@@ -2,7 +2,8 @@ html{
 	height: 100%
 }
 #body{
-	background-color: black;
+	/*background-color: #322840;*/
+  background-image:url(./SimpleShiny.svg)
 }
 #header{
 	color:white;
@@ -69,7 +70,7 @@ table {
 	color:white;
 }
 #compText{
-	color:blue;
+	color:#B1A8B9;
 	font-family: sans-serif;
 	text-align: center;
 }
