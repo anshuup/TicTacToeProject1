@@ -56,7 +56,6 @@ function drawShape(boxClicked,boxId){
 				let emptyValI = []
 				let emptyValJ = []
 
-
 				for(var i=0;i<circleMove.length;i++){
 					for(var j=0;j<circleMove[i].length;j++){
 						if(circleMove[i][j] == 0){
@@ -67,7 +66,6 @@ function drawShape(boxClicked,boxId){
 				}
 				let val
 				let val2
-				//console.log(bestMoveArray)
 				if(bestMoveArray[0].length != 0){
 					val = bestMoveArray[0][0]
 					val2 = bestMoveArray[1][0]
@@ -78,7 +76,6 @@ function drawShape(boxClicked,boxId){
 					val2 = emptyValJ[index]
 				}
 
-			//	document.getElementById("winnerVal").innerHTML = "Circle is making move..."
 				document.getElementById("winnerValPlayer").style.color = "white"
 				document.getElementById("winnerValComp").style.color = "grey"
 
@@ -124,7 +121,6 @@ function twoPlay(boxClicked,boxId){
 	}
 	play()
 	if(circlePlayer == true){
-		//document.getElementById("winnerVal").innerHTML = "Cross is making move..."
 		document.getElementById("winnerValPlayer1").style.color = "grey"
 		document.getElementById("winnerValPlayer2").style.color = "white"
 		let circleElem = document.createElement("div")
@@ -147,7 +143,6 @@ function twoPlay(boxClicked,boxId){
 		setTimeout(function(){circleElem.classList.remove("elementToFadeInAndOut");}, 500);
 	}
 	else{
-		//document.getElementById("winnerVal").innerHTML = "Circle is making move..."
 		document.getElementById("winnerValPlayer1").style.color = "white"
 		document.getElementById("winnerValPlayer2").style.color = "grey"
 		let checkElem = document.createElement("div")
@@ -296,12 +291,7 @@ function findWinner(boxId){
       document.getElementById("winnerValPlayer2").innerHTML = "Player2 (X) : "+crossWinner
     }
 
-		var wrapper = document.querySelector('table');
-		document.addEventListener('click', function(e) {
-		  if ( !wrapper.contains(e.target)){
-				init()
-			}
- 		})
+		document.addEventListener('click', run)
 	}
 
 	if(!circleMove[0].includes(0) && !circleMove[1].includes(0)  && !circleMove[2].includes(0) && winner == undefined){
@@ -321,13 +311,8 @@ function findWinner(boxId){
 				document.getElementById("box"+i+j).style.color = "grey"
 			}
 		}
-		var wrapper = document.querySelector('table');
-		document.addEventListener('click', function(e) {
-			if ( !wrapper.contains(e.target)){
-				//window.location.reload()
-				init()
-			}
-		})
+    document.addEventListener('click', run)
+
 	}
 }
 
@@ -338,7 +323,7 @@ function findBestPossibleMove(){
 	a = circleMove.map((y) => y.reduce((a, b) => a + b));
 	b = circleMove.reduce((a, b) => a.map((v, i) => v + b[i]));
 
-
+  //horizontal check
 	for(i=0;i<a.length;i++){
 		if(a[i] == 2){
 			bestMoveArrayRow.push(i)
@@ -348,7 +333,16 @@ function findBestPossibleMove(){
 				}
 			}
 		}
+    if(a[i] == -2){
+      bestMoveArrayRow.unshift(i)
+      for(j=0;j<circleMove[i].length;j++){
+        if(circleMove[i][j] == 0){
+          bestMoveArrayColumn.unshift(j)
+        }
+      }
+    }
 	}
+  //vertical check
 	for(i=0;i<b.length;i++){
 		if(b[i] == 2){
 			bestMoveArrayColumn.push(i)
@@ -358,6 +352,14 @@ function findBestPossibleMove(){
 				}
 			}
 		}
+    if(b[i] == -2){
+      bestMoveArrayColumn.unshift(i)
+      for(j=0;j<circleMove[i].length;j++){
+        if(circleMove[j][i] == 0){
+          bestMoveArrayRow.unshift(j)
+        }
+      }
+    }
 	}
 
 	let diagonal1 = 0, diagonal2 = 0;
@@ -367,9 +369,14 @@ function findBestPossibleMove(){
 	let diagnoalRow2
 	let diagnoalCol2
 
+  let diagnoalRow3
+	let diagnoalCol3
+
+  let diagnoalRow4
+  let diagnoalCol4
+
 	for (let row = 0; row < circleMove.length; row++) {
 		diagonal1 += circleMove[row][row];
-
 		if(diagonal1 == 2){
 			for(i=0;i<circleMove.length;i++){
 				if(circleMove[i][i] == 0){
@@ -378,6 +385,14 @@ function findBestPossibleMove(){
 				}
 			}
 		}
+    if(diagonal1 == -2){
+      for(i=0;i<circleMove.length;i++){
+        if(circleMove[i][i] == 0){
+          diagnoalRow3 = i;
+          diagnoalCol3 = i;
+        }
+      }
+    }
 	}
 	for (let row = 0; row < circleMove.length; row++) {
 		diagonal2 += circleMove[row][circleMove.length - row - 1];
@@ -390,6 +405,14 @@ function findBestPossibleMove(){
 				}
 			}
 		}
+    if(diagonal2 == -2){
+      for(i=0;i<circleMove.length;i++){
+        if(circleMove[i][circleMove.length - i - 1] == 0){
+          diagnoalRow4 = i;
+          diagnoalCol4 = circleMove.length - i - 1;
+        }
+      }
+    }
 	}
 	if(diagnoalRow1 != undefined){
 		bestMoveArrayRow.push(diagnoalRow1)
@@ -400,6 +423,14 @@ function findBestPossibleMove(){
 		bestMoveArrayColumn.push(diagnoalCol2)
 	}
 
+  if(diagnoalRow3 != undefined){
+		bestMoveArrayRow.unshift(diagnoalRow3)
+		bestMoveArrayColumn.unshift(diagnoalCol3)
+	}
+  if(diagnoalRow4 != undefined){
+    bestMoveArrayRow.unshift(diagnoalRow4)
+    bestMoveArrayColumn.unshift(diagnoalCol4)
+  }
 
 	let array = []
 	array.push(bestMoveArrayRow)
@@ -408,7 +439,13 @@ function findBestPossibleMove(){
 	return array
 }
 
+function run(e){
+  var wrapper = document.querySelector('table');
 
+    if ( !wrapper.contains(e.target)){
+      init()
+    }
+}
 function play() {
 	var audio = document.getElementById("audio");
 	audio.src = "/sound"
@@ -416,7 +453,6 @@ function play() {
 	audio.currentTime = 0
 
 }
-//need to make sure onclick is not set to false
 function init(){
 	let buttonElem = document.getElementsByTagName("button")
 	for(var i=0;i<buttonElem.length;i++){
@@ -446,5 +482,5 @@ function init(){
     document.getElementById("compText").innerHTML = "Two Players..."
 
   }
-
+  document.removeEventListener("click",run,false)
 }
