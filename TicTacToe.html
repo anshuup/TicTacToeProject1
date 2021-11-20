@@ -10,36 +10,62 @@
     <link rel="stylesheet" href="./TicTacToe.css">
     <script src="./TicTacToe.js" type="text/javascript"></script>
   </head>
-  <body id="body" onload="alertWindow()">
+  <body id="body">
 		<h1 id="header"> Tic Tac Toe </h1>
     <!-- source https://codepen.io/xunnn/pen/yEmMbm -->
     <h2 id="compText"> Playing against computer... </h2>
-    <h2 id="winnerVal"> Circle is making move... </h2>
+    <h2 id="winnerVal"></h2>
+
+    <div id="winnerPoints">
+      <div id="winnerValPlayer" style="">Player (O) : 0 </div>
+      <div id="winnerValComp" style="">Computer (X) : 0 </div>
+    </div>
+
+  <!--  <h5 id="winnerValPlayer1" style="">Player 1 (O)</h5>
+    <h5 id="winnerValPlayer2" style="">Player 2 (X)</h5> -->
+
     <table>
       <tr>
-        <td onclick="drawShape('0','00');findWinner('00')" id="box00"></td>
-        <td onclick="drawShape('1','01');findWinner('01')" class="vert" id="box01"></td>
-        <td onclick="drawShape('2','02');findWinner('02')" id="box02"></td>
+        <td>
+          <button onclick="drawShape('0','00');findWinner('00')" id="box00"></button>
+        </td>
+        <td>
+          <button onclick="drawShape('1','01');findWinner('01')" class="vert" id="box01"></button>
+        </td>
+        <td>
+          <button onclick="drawShape('2','02');findWinner('02')" id="box02"></button>
+        </td>
       </tr>
       <tr>
-        <td onclick="drawShape('3','10');findWinner('10')" class="hori" id="box10"></td>
-        <td onclick="drawShape('4','11');findWinner('11')" class="vert hori" id="box11"></td>
-        <td onclick="drawShape('5','12');findWinner('12')" class="hori" id="box12"></td>
+        <td>
+          <button onclick="drawShape('3','10');findWinner('10')" class="hori" id="box10"></button>
+        </td>
+        <td>
+          <button onclick="drawShape('4','11');findWinner('11')" class="vert hori" id="box11"></button>
+        </td>
+        <td>
+          <button onclick="drawShape('5','12');findWinner('12')" class="hori" id="box12"></button>
+        </td>
       </tr>
       <tr>
-        <td onclick="drawShape('6','20');findWinner('20')" id="box20"></td>
-        <td onclick="drawShape('7','21');findWinner('21')" class="vert" id="box21"></td>
-        <td onclick="drawShape('8','22');findWinner('22')" id="box22"></td>
+        <td>
+          <button onclick="drawShape('6','20');findWinner('20')" id="box20"></button>
+        </td>
+        <td>
+          <button  onclick="drawShape('7','21');findWinner('21')" class="vert" id="box21"></button>
+        </td>
+        <td>
+          <button onclick="drawShape('8','22');findWinner('22')" id="box22"></button>
+        </td>
       </tr>
     </table>
 
 
     <div id="info">
-      <a href = "#" onclick="window.location.reload(true);" id="restartLink">Restart</a>
+      <a href = "/" id="restartLink">Restart</a>
       <a href = "/twoPlayer" id="twoPlayer">Two Player</a>
       <a href = "/" id="computer" style="color:white;">Computer</a>
     </div>
     <audio id="audio" src="/sound"></audio>
-
   </body>
 </html>

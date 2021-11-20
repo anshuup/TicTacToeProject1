@@ -6,9 +6,11 @@ const http = require('http').createServer(app);
 const port = process.env.PORT || 3000
 
 
+let winnerCircle = 0;
+let winnerCross = 0;
+
 app.get("/",(req,res) => {
 	res.sendFile(path.join(__dirname, "/TicTacToe.html"))
-	console.log(__dirname)
 })
 app.get("/sound",(req,res)=>{
 	res.sendFile(path.join(__dirname, "/sfx-pop5.mp3"))

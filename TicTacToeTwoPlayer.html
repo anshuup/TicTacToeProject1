@@ -8,29 +8,52 @@
     <link rel="stylesheet" href="./TicTacToe.css">
     <script src="./TicTacToe.js" type="text/javascript"></script>
   </head>
-  <body id="body" onload="alertWindow()">
+  <body id="body">
 		<h1 id="header"> Tic Tac Toe </h1>
     <h2 id="compText"> Two Players... </h2>
     <!-- source https://codepen.io/xunnn/pen/yEmMbm -->
-    <h2 id="winnerVal"> Circle is making move... </h2>
+    <h2 id="winnerVal"></h2>
+
+    <div id="winnerPoints1">
+      <div id="winnerValPlayer1" style="">Player1 (O) : 0 </div>
+      <div id="winnerValPlayer2" style="">Player2 (X) : 0 </div>
+    </div>
+
     <table>
       <tr>
-        <td onclick="twoPlay('0','00');findWinner('00')" id="box00"></td>
-        <td onclick="twoPlay('1','01');findWinner('01')" class="vert" id="box01"></td>
-        <td onclick="twoPlay('2','02');findWinner('02')" id="box02"></td>
+        <td>
+          <button onclick="twoPlay('0','00');findWinner('00')" id="box00"></button>
+        </td>
+        <td>
+          <button onclick="twoPlay('1','01');findWinner('01')" class="vert" id="box01"></button>
+        </td>
+        <td>
+          <button onclick="twoPlay('2','02');findWinner('02')" id="box02"></button>
+        </td>
       </tr>
       <tr>
-        <td onclick="twoPlay('3','10');findWinner('10')" class="hori" id="box10"></td>
-        <td onclick="twoPlay('4','11');findWinner('11')" class="vert hori" id="box11"></td>
-        <td onclick="twoPlay('5','12');findWinner('12')" class="hori" id="box12"></td>
+        <td>
+          <button onclick="twoPlay('3','10');findWinner('10')" class="hori" id="box10"></button>
+        </td>
+        <td>
+          <button onclick="twoPlay('4','11');findWinner('11')" class="vert hori" id="box11"></button>
+        </td>
+        <td>
+          <button onclick="twoPlay('5','12');findWinner('12')" class="hori" id="box12"></button>
+        </td>
       </tr>
       <tr>
-        <td onclick="twoPlay('6','20');findWinner('20')" id="box20"></td>
-        <td onclick="twoPlay('7','21');findWinner('21')" class="vert" id="box21"></td>
-        <td onclick="twoPlay('8','22');findWinner('22')" id="box22"></td>
+        <td>
+          <button onclick="twoPlay('6','20');findWinner('20')" id="box20"></button>
+        </td>
+        <td>
+          <button  onclick="twoPlay('7','21');findWinner('21')" class="vert" id="box21"></button>
+        </td>
+        <td>
+          <button onclick="twoPlay('8','22');findWinner('22')" id="box22"></button>
+        </td>
       </tr>
     </table>
-
 
     <div id="info">
       <a href = "#" onclick="window.location.reload(true);" id="restartLink">Restart</a>

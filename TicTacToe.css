@@ -15,20 +15,78 @@ html{
 	text-align: center;
 	font-family: sans-serif;
 }
+#winnerValPlayer{
+	color: white;
+	text-align: center;
+	font-family: sans-serif;
+	margin: 0px;
+	padding: 0px;
+	width: fit-content;
+	display: inline;
+	padding-right: 30px;
+}
+#winnerValComp{
+	color: grey;
+	text-align: center;
+	font-family: sans-serif;
+	margin: 0px;
+	padding: 0px;
+	width: fit-content;
+	display: inline;
+}
+#winnerPoints{
+	width: 100%;
+  text-align: center;
+}
+#winnerPoints1{
+	width: 100%;
+  text-align: center;
+}
+#winnerValPlayer1{
+	color: white;
+	text-align: center;
+	font-family: sans-serif;
+	margin: 0px;
+	padding: 0px;
+	width: fit-content;
+	display: inline;
+	padding-right: 30px;
+}
+#winnerValPlayer2{
+	color: grey;
+	text-align: center;
+	font-family: sans-serif;
+	margin: 0px;
+	padding: 0px;
+	width: fit-content;
+	display: inline;
+}
 /* source : https://codepen.io/xunnn/pen/yEmMbm */
 td {
   width: 15%;
   height: 15%;
 	color: white;
-	vertical-align: top;
+/*	vertical-align: top;
   font-size: 5em;
-  padding-left: 15px;
+  padding-left: 15px;*/
 
 }
 table {
   margin: 5px auto;
 	width: 300px;
 	height: 300px;
+}
+button{
+	background-color: transparent;
+	vertical-align: top;
+	padding-left: 15px;
+	border-style: none;
+	width: 100%;
+	height: 100%;
+	font-size: 5em;
+	align-items: center;
+	display: flex;
+	color: white;
 }
 .vert {
   border-left: 2px solid white;

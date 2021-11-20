@@ -1,21 +1,17 @@
-function alertWindow(){
-	var xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-		}
-	};
-	xhttp.open("GET", "/", true);
-	xhttp.send();
-}
 let winner;
 let circleWinner = 0;
 let crossWinner = 0;
 
 let circlePlayer = true;
 let circleMove = [[0,0,0],[0,0,0],[0,0,0]]
+
+if(window.location.pathanme == "/"){
+  document.getElementById("computer").href = "#"
+}
+if(window.location.pathanme == "/twoPlayer"){
+  document.getElementById("twoPlayer").href = "#"
+}
 function drawShape(boxClicked,boxId){
-
-
 	let rowNum = 0
 	if(parseInt(boxClicked) <= 2){
 		rowNum = 0
@@ -26,10 +22,10 @@ function drawShape(boxClicked,boxId){
 	else if(parseInt(boxClicked) > 5 && parseInt(boxClicked) <= 8){
 		rowNum = 2
 	}
-
 	if(circlePlayer == true){
 		play()
-		document.getElementById("winnerVal").innerHTML = "Cross is making move..."
+		document.getElementById("winnerValPlayer").style.color = "grey"
+		document.getElementById("winnerValComp").style.color = "white"
 		let circleElem = document.createElement("div")
 		circleElem.id = "circle"
 		circlePlayer = false
@@ -46,21 +42,20 @@ function drawShape(boxClicked,boxId){
 
 		circleElem.style.display = "block"
 		circleElem.innerHTML ="O"
-		document.getElementById("box"+boxId).onclick = false
+		document.getElementById("box"+boxId).disabled = true
 		circleElem.classList.add("elementToFadeInAndOut");
 	  setTimeout(function(){circleElem.classList.remove("elementToFadeInAndOut");}, 500);
 	}
 
 	if(document.getElementById("box"+boxId).innerText.length != 0){
 		setTimeout(function(){
-			if(winner == undefined && document.getElementById("winnerVal").innerHTML != "Game over"){
+			if(winner == undefined && document.getElementById("compText").innerHTML != "Game over"){
 				let bestMoveArray = []
-
 				bestMoveArray = findBestPossibleMove()
-
 
 				let emptyValI = []
 				let emptyValJ = []
+
 
 				for(var i=0;i<circleMove.length;i++){
 					for(var j=0;j<circleMove[i].length;j++){
@@ -83,7 +78,10 @@ function drawShape(boxClicked,boxId){
 					val2 = emptyValJ[index]
 				}
 
-				document.getElementById("winnerVal").innerHTML = "Circle is making move..."
+			//	document.getElementById("winnerVal").innerHTML = "Circle is making move..."
+				document.getElementById("winnerValPlayer").style.color = "white"
+				document.getElementById("winnerValComp").style.color = "grey"
+
 				let checkElem = document.createElement("div")
 				checkElem.id = "check"
 				crossPlayer = false
@@ -102,7 +100,7 @@ function drawShape(boxClicked,boxId){
 				checkElem.style.display = "block"
 				checkElem.innerHTML = "X"
 				play()
-				document.getElementById("box"+val+val2).onclick = false
+				document.getElementById("box"+val+val2).disabled = true
 				findWinner("'"+val+val2+"'")
 				checkElem.classList.add("elementToFadeInAndOut");
 				setTimeout(function(){checkElem.classList.remove("elementToFadeInAndOut");}, 5000);
@@ -126,7 +124,9 @@ function twoPlay(boxClicked,boxId){
 	}
 	play()
 	if(circlePlayer == true){
-		document.getElementById("winnerVal").innerHTML = "Cross is making move..."
+		//document.getElementById("winnerVal").innerHTML = "Cross is making move..."
+		document.getElementById("winnerValPlayer1").style.color = "grey"
+		document.getElementById("winnerValPlayer2").style.color = "white"
 		let circleElem = document.createElement("div")
 		circleElem.id = "circle"
 		circlePlayer = false
@@ -142,12 +142,14 @@ function twoPlay(boxClicked,boxId){
 		document.getElementById("box"+boxId).appendChild(circleElem)
 		circleElem.style.display = "block"
 		circleElem.innerHTML ="O"
-		document.getElementById("box"+boxId).onclick = false
+		document.getElementById("box"+boxId).disabled = true
 		circleElem.classList.add("elementToFadeInAndOut");
 		setTimeout(function(){circleElem.classList.remove("elementToFadeInAndOut");}, 500);
 	}
 	else{
-		document.getElementById("winnerVal").innerHTML = "Circle is making move..."
+		//document.getElementById("winnerVal").innerHTML = "Circle is making move..."
+		document.getElementById("winnerValPlayer1").style.color = "white"
+		document.getElementById("winnerValPlayer2").style.color = "grey"
 		let checkElem = document.createElement("div")
 		checkElem.id = "check"
 		crossPlayer = false
@@ -165,7 +167,7 @@ function twoPlay(boxClicked,boxId){
 		document.getElementById("box"+boxId).style.color = "antiquewhite"
 		checkElem.style.display = "block"
 		checkElem.innerHTML = "X"
-		document.getElementById("box"+boxId).onclick = false
+		document.getElementById("box"+boxId).disabled = true
 		checkElem.classList.add("elementToFadeInAndOut");
 		setTimeout(function(){checkElem.classList.remove("elementToFadeInAndOut");}, 500);
 	}
@@ -184,9 +186,6 @@ function findWinner(boxId){
 				for(var k=0;k<3;k++){
 					if(i != j){
 						document.getElementById("box"+j+k).style.color = "grey"
-					}
-					else{
-					// 	document.getElementById("box"+j+k).style.color = "red"
 					}
 				}
 			}
@@ -282,20 +281,53 @@ function findWinner(boxId){
 	if(winner != undefined){
 		for(var i=0;i<3;i++){
 			for(var j=0;j<3;j++){
-				document.getElementById("box"+i+j).onclick = false
+				document.getElementById("box"+i+j).disabled = true
 			}
 		}
-		document.getElementById("winnerVal").innerHTML = winner + " Won !!"
+		document.getElementById("compText").innerHTML = winner + " Won !!"
+    if(window.location.pathname == "/"){
+      document.getElementById("winnerValPlayer").style.color = "grey"
+      document.getElementById("winnerValComp").style.color = "grey"
+      document.getElementById("winnerValPlayer").innerHTML = "Player (O) : "+circleWinner
+      document.getElementById("winnerValComp").innerHTML = "Computer (X) : "+crossWinner
+    }
+    else if(window.location.href == "/twoPlayer"){
+      document.getElementById("winnerValPlayer1").innerHTML = "Player1 (O) : "+circleWinner
+      document.getElementById("winnerValPlayer2").innerHTML = "Player2 (X) : "+crossWinner
+    }
+
+		var wrapper = document.querySelector('table');
+		document.addEventListener('click', function(e) {
+		  if ( !wrapper.contains(e.target)){
+				init()
+			}
+ 		})
 	}
 
 	if(!circleMove[0].includes(0) && !circleMove[1].includes(0)  && !circleMove[2].includes(0) && winner == undefined){
-		document.getElementById("winnerVal").innerHTML = "Game over"
+    if(window.location.pathname == "/"){
+      document.getElementById("winnerValPlayer").style.color = "grey"
+      document.getElementById("winnerValComp").style.color = "grey"
+    }
+    else if(window.location.pathname == "/twoPlayer"){
+      document.getElementById("winnerValPlayer1").style.color = "grey"
+      document.getElementById("winnerValPlayer2").style.color = "grey"
+    }
+		document.getElementById("compText").innerHTML = "Game over"
+
 		for(var i=0;i<3;i++){
 			for(var j=0;j<3;j++){
-				document.getElementById("box"+i+j).onclick = false
+				document.getElementById("box"+i+j).disabled = true
 				document.getElementById("box"+i+j).style.color = "grey"
 			}
 		}
+		var wrapper = document.querySelector('table');
+		document.addEventListener('click', function(e) {
+			if ( !wrapper.contains(e.target)){
+				//window.location.reload()
+				init()
+			}
+		})
 	}
 }
 
@@ -374,15 +406,45 @@ function findBestPossibleMove(){
 	array.push(bestMoveArrayColumn)
 
 	return array
-
-	//find the one where computer wins i.e sum = -2
 }
+
 
 function play() {
 	var audio = document.getElementById("audio");
 	audio.src = "/sound"
-
 	audio.play();
 	audio.currentTime = 0
+
+}
+//need to make sure onclick is not set to false
+function init(){
+	let buttonElem = document.getElementsByTagName("button")
+	for(var i=0;i<buttonElem.length;i++){
+		buttonElem[i].innerHTML = ""
+		buttonElem[i].disabled = false;
+    buttonElem[i].style.color = "white"
+	}
+	for(var i=0;i<circleMove.length;i++){
+		for(var j=0;j<circleMove[i].length;j++){
+			circleMove[i][j] = 0
+		}
+	}
+	circlePlayer = true;
+	crossPlayer = true;
+	winner = undefined
+  if(window.location.pathname == "/"){
+    document.getElementById("winnerValPlayer").innerHTML = "Player (O) : "+circleWinner
+    document.getElementById("winnerValComp").innerHTML = "Computer (X) : "+crossWinner
+    document.getElementById("compText").innerHTML = "Playing against computer..."
+    document.getElementById("winnerValPlayer").style.color = "white"
+
+  }
+  else if(window.location.pathname == "/twoPlayer"){
+    document.getElementById("winnerValPlayer1").style.color = "white"
+    document.getElementById("winnerValPlayer1").innerHTML = "Player1 (O) : "+circleWinner
+    document.getElementById("winnerValPlayer2").innerHTML = "Player2 (X) : "+crossWinner
+    document.getElementById("compText").innerHTML = "Two Players..."
+
+  }
 
 }
