@@ -2,7 +2,6 @@ html{
 	height: 100%
 }
 #body{
-	/*background-color: #322840;*/
   background-image:url(./SimpleShiny.svg)
 }
 #header{
@@ -66,10 +65,6 @@ td {
   width: 15%;
   height: 15%;
 	color: white;
-/*	vertical-align: top;
-  font-size: 5em;
-  padding-left: 15px;*/
-
 }
 table {
   margin: 5px auto;
@@ -128,16 +123,23 @@ button{
 	color:white;
 }
 #compText{
-	color:#B1A8B9;
+	color:white;
 	font-family: sans-serif;
 	text-align: center;
 }
 
 .elementToFadeInAndOut {
-  animation: fadeInOut 0.5s linear forwards;
+  animation: fadeInOut 0.3s linear forwards;
 }
 
 @keyframes fadeInOut {
  0% { opacity:0; }
  50% { opacity:1; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+}
+
+.animate-flicker {
+    animation: fadeIn 0.4s 5 alternate;
 }

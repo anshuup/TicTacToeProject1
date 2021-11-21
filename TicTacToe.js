@@ -49,7 +49,7 @@ function drawShape(boxClicked,boxId){
 
 	if(document.getElementById("box"+boxId).innerText.length != 0){
 		setTimeout(function(){
-			if(winner == undefined && document.getElementById("compText").innerHTML != "Game over"){
+			if(winner == undefined && document.getElementById("compText").innerHTML != "Game over !! Click anywhere to continue..."){
 				let bestMoveArray = []
 				bestMoveArray = findBestPossibleMove()
 
@@ -258,6 +258,10 @@ function findWinner(boxId){
 		document.getElementById("box20").style.color = "white"
 		document.getElementById("box11").style.color = "white"
 		document.getElementById("box02").style.color = "white"
+    document.getElementById("box20").children[0].classList.add("animate-flicker")
+    document.getElementById("box11").children[0].classList.add("animate-flicker")
+    document.getElementById("box02").children[0].classList.add("animate-flicker")
+
 		winner = "Circle"
 		circleWinner+=1
 	}
@@ -267,9 +271,12 @@ function findWinner(boxId){
 				document.getElementById("box"+j+k).style.color = "grey"
 			}
 		}
-		document.getElementById("box20").style.color = "white"
-		document.getElementById("box11").style.color = "white"
-		document.getElementById("box02").style.color = "white"
+		document.getElementById("box20").style.color = "antiquewhite"
+		document.getElementById("box11").style.color = "antiquewhite"
+		document.getElementById("box02").style.color = "antiquewhite"
+    document.getElementById("box20").children[0].classList.add("animate-flicker")
+    document.getElementById("box11").children[0].classList.add("animate-flicker")
+    document.getElementById("box02").children[0].classList.add("animate-flicker")
 		winner = "Cross"
 		crossWinner+=1
 	}
@@ -277,14 +284,18 @@ function findWinner(boxId){
 		for(var i=0;i<3;i++){
 			for(var j=0;j<3;j++){
 				document.getElementById("box"+i+j).disabled = true
+        if(document.getElementById("box"+i+j).style.color != "grey"){
+          document.getElementById("box"+i+j).children[0].classList.add("animate-flicker")
+        }
 			}
 		}
-		document.getElementById("compText").innerHTML = winner + " Won !!"
+		document.getElementById("compText").innerHTML = winner + " Won !! Click anywhere to continue..."
     if(window.location.pathname == "/"){
       document.getElementById("winnerValPlayer").style.color = "grey"
       document.getElementById("winnerValComp").style.color = "grey"
       document.getElementById("winnerValPlayer").innerHTML = "Player (O) : "+circleWinner
       document.getElementById("winnerValComp").innerHTML = "Computer (X) : "+crossWinner
+
     }
     else if(window.location.href == "/twoPlayer"){
       document.getElementById("winnerValPlayer1").innerHTML = "Player1 (O) : "+circleWinner
@@ -303,7 +314,7 @@ function findWinner(boxId){
       document.getElementById("winnerValPlayer1").style.color = "grey"
       document.getElementById("winnerValPlayer2").style.color = "grey"
     }
-		document.getElementById("compText").innerHTML = "Game over"
+		document.getElementById("compText").innerHTML = "Game over !! Click anywhere to continue..."
 
 		for(var i=0;i<3;i++){
 			for(var j=0;j<3;j++){
